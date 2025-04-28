@@ -1,0 +1,55 @@
+﻿EVA3_1_FUNCIONES
+Last login: Mon Apr 28 16:10:50 on ttys145
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 80
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> create database t3;
+Query OK, 1 row affected (0.06 sec)
+mysql> use t3;
+Database changed
+mysql> use sakila;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> select count(*) from customer;
++----------+
+| count(*) |
++----------+
+|      599 |
++----------+
+1 row in set (0.01 sec)
+mysql> use t3;
+Database changed
+mysql> select regresa_valor();
++-----------------+
+| regresa_valor() |
++-----------------+
+|               1 |
++-----------------+
+1 row in set (0.02 sec)
+mysql> drop function regresa_valor;
+Query OK, 0 rows affected (0.05 sec)
+mysql> select regresa_valor();
+ERROR 1305 (42000): FUNCTION t3.regresa_valor does not exist
+mysql> select hola("Ruben");
++---------------+
+| hola("Ruben") |
++---------------+
+| HOLA, Ruben   |
++---------------+
+1 row in set (0.01 sec)
+mysql> select hola("Ruben") as resultado;
++-------------+
+| resultado   |
++-------------+
+| HOLA, Ruben |
++-------------+
+1 row in set (0.00 sec)
+mysql>
