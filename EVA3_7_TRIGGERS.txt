@@ -1,0 +1,67 @@
+﻿Last login: Mon May 19 16:18:28 on ttys150
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 106
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> use t3;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> insert into clientes value(3, "juan", "perez");
+Query OK, 1 row affected (0.02 sec)
+mysql> insert into clientes value(4, "pedro", "paramo");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into clientes value(5, "juan", "rulfo");
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from bitacora;
++-------------+--------+
+| id_bitacora | nombre |
++-------------+--------+
+|           1 | juan   |
+|           2 | pedro  |
+|           3 | juan   |
++-------------+--------+
+3 rows in set (0.00 sec)
+mysql> select crear_rfc();
++---------------+
+| crear_rfc()   |
++---------------+
+| XXXX112233000 |
++---------------+
+1 row in set (0.03 sec)
+mysql> insert into clientes value(6, "antonio", "perez");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into clientes value(7, "antonio", "rulfo");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc clientes;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id_cliente | int         | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| apellido   | varchar(50) | YES  |     | NULL    |       |
+| RFC        | varchar(13) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+mysql> insert into clientes(id_cliente, nombre,apellido) value(7, "antonio", "rulfo");
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into clientes(id_cliente, nombre,apellido) value(7, "antonio", "rulfo");select * from clientes;
+Query OK, 1 row affected (0.00 sec)
++------------+---------+--------------+---------------+
+| id_cliente | nombre  | apellido     | RFC           |
++------------+---------+--------------+---------------+
+|        301 | Juan    | Perez Jolote | NULL          |
+|          3 | juan    | perez        | NULL          |
+|          4 | pedro   | paramo       | NULL          |
+|          5 | juan    | rulfo        | NULL          |
+|          7 | antonio | rulfo        | XXXX112233000 |
+|          7 | antonio | rulfo        | XXXX112233000 |
++------------+---------+--------------+---------------+
+6 rows in set (0.00 sec)
+mysql>
